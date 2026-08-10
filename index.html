@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neighbour's Day Quiz</title>
+  <title>Quiz Dzień Sąsiada - Czmoń 2026</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -64,8 +64,8 @@
 <body>
 <div class="quiz">
   <div id="startScreen">
-    <h1>🏆 Neighbour's Day Quiz</h1>
-    <p>Enter your name to begin:</p>
+    <h1>🏆 Quiz Dzień Sąsiada - Czmoń 2026</h1>
+    <p>Podaj swoje imię i nazwisko:</p>
     <input
       type="text"
       id="playerName"
@@ -77,68 +77,56 @@
     <h1>Quiz</h1>
     <div id="timer">Time: 0 seconds</div>
     <div class="question">
-      <p><strong>1. What is the capital of Poland?</strong></p>
+      <p><strong>1. Jak ma na imię główna organizatorka Dnia Sąsiada?</strong></p>
       <label>
-        <input type="radio" name="q1" value="Krakow">
-        Kraków
+        <input type="radio" name="q1" value="Agnieszka">
+        Agnieszka
       </label>
       <label>
-        <input type="radio" name="q1" value="Warsaw">
-        Warsaw
+        <input type="radio" name="q1" value="Karina">
+        Karina
       </label>
       <label>
-        <input type="radio" name="q1" value="Gdansk">
-        Gdańsk
-      </label>
-      <label>
-        <input type="radio" name="q1" value="Wroclaw">
-        Wrocław
+        <input type="radio" name="q1" value="Wiesia">
+        Wiesia
       </label>
     </div>
     <div class="question">
-      <p><strong>2. How many days are there in a week?</strong></p>
+      <p><strong>2. Która to jest edycja Dnia Sąsiada?</strong></p>
       <label>
-        <input type="radio" name="q2" value="5">
-        5
+        <input type="radio" name="q2" value="2">
+        2
       </label>
       <label>
-        <input type="radio" name="q2" value="6">
-        6
+        <input type="radio" name="q2" value="3">
+        3
       </label>
       <label>
-        <input type="radio" name="q2" value="7">
-        7
-      </label>
-      <label>
-        <input type="radio" name="q2" value="8">
-        8
+        <input type="radio" name="q2" value="4">
+        4
       </label>
     </div>
     <div class="question">
-      <p><strong>3. What colour do you get by mixing blue and yellow?</strong></p>
+      <p><strong>3. W którym roku odbyła się pierwsza edycja Dnia Sąsiada?</strong></p>
       <label>
-        <input type="radio" name="q3" value="Green">
-        Green
+        <input type="radio" name="q3" value="2020">
+        2020
       </label>
       <label>
-        <input type="radio" name="q3" value="Purple">
-        Purple
+        <input type="radio" name="q3" value="2021">
+        2021
       </label>
       <label>
-        <input type="radio" name="q3" value="Orange">
-        Orange
-      </label>
-      <label>
-        <input type="radio" name="q3" value="Pink">
-        Pink
-      </label>
+        <input type="radio" name="q3" value="2022">
+        2022
+      </label
     </div>
-    <button onclick="finishQuiz()">SUBMIT ANSWERS</button>
+    <button onclick="finishQuiz()">WYŚLIJ ODPOWIEDZI</button>
   </div>
   <div id="resultScreen">
     <h1>🎉 Finished!</h1>
     <p id="result"></p>
-    <button onclick="location.reload()">TRY AGAIN</button>
+    <button onclick="location.reload()">SPRÓBUJ PONOWNIE</button>
   </div>
 </div>
 <script>
@@ -147,7 +135,7 @@ let timerInterval;
 function startQuiz() {
   const name = document.getElementById("playerName").value.trim();
   if (name === "") {
-    alert("Please enter your name.");
+    alert("Podaj swoje imię i nazwisko:");
     return;
   }
   document.getElementById("startScreen").style.display = "none";
@@ -164,13 +152,13 @@ function finishQuiz() {
   const endTime = Date.now();
   const totalTime = (endTime - startTime) / 1000;
   let score = 0;
-  if (document.querySelector('input[name="q1"]:checked')?.value === "Warsaw") {
+  if (document.querySelector('input[name="q1"]:checked')?.value === "Wiesia") {
     score++;
   }
-  if (document.querySelector('input[name="q2"]:checked')?.value === "7") {
+  if (document.querySelector('input[name="q2"]:checked')?.value === "3") {
     score++;
   }
-  if (document.querySelector('input[name="q3"]:checked')?.value === "Green") {
+  if (document.querySelector('input[name="q3"]:checked')?.value === "2022") {
     score++;
   }
   const name = document.getElementById("playerName").value;
