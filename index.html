@@ -149,7 +149,7 @@ function startQuiz() {
 }
   const SUPABASE_URL = "https://vkqduuoskkwfennhgyio.supabase.co";
   const SUPABASE_KEY = "sb_publishable_m2UCOXjJ1GYvK6S_mHChZg_onE2-1sG";
-  const supabase = windows.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   async function finishQuiz() {
   clearInterval(timerInterval);
