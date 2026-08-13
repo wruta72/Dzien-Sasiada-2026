@@ -52,6 +52,8 @@
     #quizScreen,
     #resultScreen {
       display: none;
+      text-align: center;
+      padding: 40px 20px;
     }
     #timer {
       text-align: center;
@@ -188,7 +190,7 @@ function startQuiz() {
 
   document.getElementById("quizScreen").style.display = "none";
   document.getElementById("resultScreen").style.display = "block";
-  alert("Wynik osiągnięty");
+  alert("Result screen reached!");
   document.getElementById("result").innerHTML =
     "<strong>" + name + "</strong><br><br>" +
     "Score: " + score + " / 3<br>" +
