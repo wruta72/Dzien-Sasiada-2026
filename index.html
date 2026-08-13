@@ -187,7 +187,7 @@ function startQuiz() {
   if (error) {
     console.error("Could not save result:", error);
   }
-
+console.log("RESULT:",name, score, totalTime);
   document.getElementById("quizScreen").style.display = "none";
   document.getElementById("resultScreen").style.display = "block";
   alert("Result screen reached!");
