@@ -129,6 +129,11 @@
     <button onclick="location.reload()">SPRÓBUJ PONOWNIE</button>
   </div>
 </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
+  const SUPABASE_URL = "https://vkqduuoskkwfennhgyio.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_m2UCOXjJ1GYvK6S_mHChZg_onE2-1sG";
+  const supabase = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
 <script>
 let startTime;
 let timerInterval;
@@ -147,10 +152,6 @@ function startQuiz() {
       "Time: " + elapsed.toFixed(1) + " seconds";
   }, 100);
 }
-  const SUPABASE_URL = "https://vkqduuoskkwfennhgyio.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_m2UCOXjJ1GYvK6S_mHChZg_onE2-1sG";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
   async function finishQuiz() {
   clearInterval(timerInterval);
 
