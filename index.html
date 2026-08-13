@@ -133,7 +133,7 @@
   <script>
   const SUPABASE_URL = "https://vkqduuoskkwfennhgyio.supabase.co";
   const SUPABASE_KEY = "sb_publishable_m2UCOXjJ1GYvK6S_mHChZg_onE2-1sG";
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let startTime;
 let timerInterval;
 function startQuiz() {
