@@ -177,9 +177,9 @@ function startQuiz() {
   const { error } = await supabase
     .from("DzienSasiada")
     .insert({
-      name: name,
-      score: score,
-      time: Math.round(totalTime * 1000)
+      Name: name,
+      Score: score,
+      Time: Math.round(totalTime * 1000)
     });
 
   if (error) {
