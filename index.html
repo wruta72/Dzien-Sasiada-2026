@@ -188,14 +188,31 @@ function startQuiz() {
   }
   document.getElementById("quizScreen").style.display = "none";
   document.getElementById("resultScreen").style.display = "block";
-  const timeText =
+    const totalQuestions = 3;
+const percentage = Math.round((score / totalQuestions) * 100);
+
+const timeText =
   Math.floor(totalTime / 60) > 0
     ? Math.floor(totalTime / 60) + " min " + Math.floor(totalTime % 60) + " s"
     : Math.floor(totalTime % 60) + " s";
 
 document.getElementById("result").innerHTML =
-  "Twój wynik: " + score + " z 3<br>" +
+  "Twój wynik: " + percentage + "%<br>" +
+  "(" + score + " z " + totalQuestions + " poprawnych odpowiedzi)<br>" +
   "Twój czas: " + timeText;
+const totalQuestions = 3;
+const percentage = Math.round((score / totalQuestions) * 100);
+
+const timeText =
+  Math.floor(totalTime / 60) > 0
+    ? Math.floor(totalTime / 60) + " min " + Math.floor(totalTime % 60) + " s"
+    : Math.floor(totalTime % 60) + " s";
+
+document.getElementById("result").innerHTML =
+  "Twój wynik: " + percentage + "%<br>" +
+  "(" + score + " z " + totalQuestions + " poprawnych odpowiedzi)<br>" +
+  "Twój czas: " + timeText;
+
 }
 
 </script>
