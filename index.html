@@ -345,16 +345,39 @@ let startTime;
 let timerInterval;
 
 
-function startQuiz() {
+let startTime;
+let timerInterval;
+const timeLimit = 30 * 60; // 30 minutes
 
-  const name =
-    document.getElementById("playerName").value.trim();
+
+async function startQuiz() {
+
+  const name = document.getElementById("playerName").value.trim();
 
   if (name === "") {
-    alert("Podaj swoje imię i nazwisko:");
+    alert("Podaj swoje imię i nazwisko lub pseudonim.");
     return;
   }
 
+  // Check if this name/nickname has already completed the quiz
+  const { data, error } = await supabaseClient
+    .from("DzienSasiada")
+    .select("Name")
+    .eq("Name", name)
+    .limit(1);
+
+  if (error) {
+    console.error("Could not check participant:", error);
+    alert("Nie udało się sprawdzić uczestnika. Spróbuj ponownie.");
+    return;
+  }
+
+  if (data && data.length > 0) {
+    alert("Ten uczestnik już ukończył quiz. Użyj innego imienia lub pseudonimu.");
+    return;
+  }
+
+  // Start quiz
   document.getElementById("startScreen").style.display = "none";
   document.getElementById("quizScreen").style.display = "block";
 
@@ -362,11 +385,24 @@ function startQuiz() {
 
   timerInterval = setInterval(function() {
 
-    const elapsed =
-      (Date.now() - startTime) / 1000;
+    const elapsed = (Date.now() - startTime) / 1000;
+
+    // Time expired
+    if (elapsed >= timeLimit) {
+      clearInterval(timerInterval);
+
+      document.getElementById("quizScreen").style.display = "none";
+      document.getElementById("resultScreen").style.display = "block";
+
+      document.getElementById("result").innerHTML =
+        "Czas na ukończenie quizu minął.<br>" +
+        "Quiz zakończony.";
+
+      return;
+    }
 
     document.getElementById("timer").textContent =
-      "Time: " + elapsed.toFixed(1) + " seconds";
+      "Czas: " + elapsed.toFixed(1) + " sekund";
 
   }, 100);
 }
@@ -377,134 +413,83 @@ async function finishQuiz() {
   clearInterval(timerInterval);
 
   const endTime = Date.now();
+  const totalTime = (endTime - startTime) / 1000;
 
-  const totalTime =
-    (endTime - startTime) / 1000;
+  // Extra protection: don't save a result after 30 minutes
+  if (totalTime >= timeLimit) {
+
+    document.getElementById("quizScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+
+    document.getElementById("result").innerHTML =
+      "Czas na ukończenie quizu minął.<br>" +
+      "Quiz zakończony.";
+
+    return;
+  }
 
   let score = 0;
 
-
-  // QUESTION 1
-  if (
-    document.querySelector('input[name="q1"]:checked')?.value
-    === "Wiesia"
-  ) {
+  if (document.querySelector('input[name="q1"]:checked')?.value === "Wiesia") {
     score++;
   }
 
-
-  // QUESTION 2
-  if (
-    document.querySelector('input[name="q2"]:checked')?.value
-    === "3"
-  ) {
+  if (document.querySelector('input[name="q2"]:checked')?.value === "3") {
     score++;
   }
 
-
-  // QUESTION 3
-  if (
-    document.querySelector('input[name="q3"]:checked')?.value
-    === "2022"
-  ) {
+  if (document.querySelector('input[name="q3"]:checked')?.value === "2022") {
     score++;
   }
 
-
-  // DUMMY QUESTIONS
-  // The correct answer is A for each dummy question.
-  // Change these later when you replace the questions.
-
-
-  if (
-    document.querySelector('input[name="q4"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q4"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q5"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q5"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q6"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q6"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q7"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q7"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q8"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q8"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q9"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q9"]:checked')?.value === "A") {
     score++;
   }
 
-
-  if (
-    document.querySelector('input[name="q10"]:checked')?.value
-    === "A"
-  ) {
+  if (document.querySelector('input[name="q10"]:checked')?.value === "A") {
     score++;
   }
 
+  const name = document.getElementById("playerName").value.trim();
 
-  const name =
-    document.getElementById("playerName").value;
-
-
-  // Save the result in Supabase
-  const { error } =
-    await supabaseClient
-      .from("DzienSasiada")
-      .insert({
-        Name: name,
-        Score: score,
-        Time: Math.round(totalTime * 1000)
-      });
-
+  // Save result in Supabase
+  const { error } = await supabaseClient
+    .from("DzienSasiada")
+    .insert({
+      Name: name,
+      Score: score,
+      Time: Math.round(totalTime * 1000)
+    });
 
   if (error) {
-    console.error(
-      "Could not save result:",
-      error
-    );
+    console.error("Could not save result:", error);
   }
 
-
   document.getElementById("quizScreen").style.display = "none";
-
   document.getElementById("resultScreen").style.display = "block";
 
-
   const totalQuestions = 10;
-
-  const percentage =
-    Math.round((score / totalQuestions) * 100);
-
+  const percentage = Math.round((score / totalQuestions) * 100);
 
   const timeText =
     Math.floor(totalTime / 60) > 0
@@ -514,19 +499,12 @@ async function finishQuiz() {
         " s"
       : Math.floor(totalTime % 60) + " s";
 
-
   document.getElementById("result").innerHTML =
-    "Twój wynik: " +
-    percentage +
-    "%<br>" +
-    "(" +
-    score +
-    " z " +
-    totalQuestions +
-    " poprawnych odpowiedzi)<br>" +
-    "Twój czas: " +
-    timeText;
+    "Twój wynik: " + percentage + "%<br>" +
+    "(" + score + " z " + totalQuestions + " poprawnych odpowiedzi)<br>" +
+    "Twój czas: " + timeText;
 }
+
 
 </script>
 
