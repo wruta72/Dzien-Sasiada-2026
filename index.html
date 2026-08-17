@@ -38,6 +38,9 @@
       box-sizing: border-box;
       font-size: 16px;
     }
+    input::placeholder {
+            font-style = italic;
+    }
     button {
       width: 100%;
       padding: 14px;
@@ -97,12 +100,12 @@
   Powodzenia! 🎉.
 </p>
 </div>
-  <p font-style = italic; margin-bottom:0px;>
+  <p>
     Podaj imię albo pseudonim:</p>
   <input
     type="text"
     id="playerName"
-    placeholder="imię/pseudonim"
+    placeholder="imię lub pseudonim"
   >
 
   <button onclick="startQuiz()">START QUIZ</button>
