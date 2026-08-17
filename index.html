@@ -14,9 +14,9 @@
     .logo {
   display: block;
   max-width: 100%;
-  width: 300px;
+  width: 200px;
   height: auto;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 0px auto;
 }
 
     .quiz {
@@ -28,6 +28,7 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     h1 {
+      margin-top: 0px;
       text-align: center;
     }
     input {
@@ -81,8 +82,10 @@
     src="Czmon-logo bez tla.png"
     class="logo"
   >
+    <h1> Dzień Sąsiada 2026</h1>
+    <h1> 🏆 Quiz</h1>
+  
 <div style="text-align: center;">
-  <h1> 🏆 Quiz<br>Dzień Sąsiada</h1>
 <p>
   <br>10 pytań, do każdego tylko jedna odpowiedź jest poprawna.
 </p>
@@ -91,7 +94,7 @@
   Wygrywa osoba, która ma najwięcej poprawnych odpowiedzi i odpowie najszybciej! 
 </p>
 <p>
-  Powodzenia! 🎉<br><br>.
+  Powodzenia! 🎉.
 </p>
 </div>
   <p>Podaj imię albo nickname:</p>
@@ -351,7 +354,7 @@ async function startQuiz() {
   const name = document.getElementById("playerName").value.trim();
 
   if (name === "") {
-    alert("Podaj swoje imię i nazwisko lub pseudonim.");
+    alert("Podaj swoje imię lub pseudonim.");
     return;
   }
 
@@ -496,8 +499,7 @@ async function finishQuiz() {
       : Math.floor(totalTime % 60) + " s";
 
   document.getElementById("result").innerHTML =
-    "Twój wynik: " + percentage + "%<br>" +
-    "(" + score + " z " + totalQuestions + " poprawnych odpowiedzi)<br>" +
+    "Twój wynik: " + score + " z " + totalQuestions + " poprawnych odpowiedzi<br>" +
     "Twój czas: " + timeText;
 }
 
