@@ -90,7 +90,7 @@
   
 <div style="text-align: center; padding: 10px;">
 <p>
-  Quiz składa się z 10 krótkich i łatwych pytań. Liczy się zarówno poprawność odpowiedzi, jak i czas ukończenia quizu.
+  Quiz składa się z 10 krótkich pytań. Liczy się zarówno poprawność odpowiedzi, jak i czas ukończenia quizu.
   Każdy może wziąć udział w quizie tylko raz. Quiz można rozpocząć w dowolnym momencie między 18.00 a 20.00.
   Wygrywa osoba, która udzieli najwięcej poprawnych odpowiedzi i ukończy quiz w najkrótszym czasie.
 </p>
@@ -280,23 +280,22 @@
     </div>
 
 
-    <!-- DUMMY QUESTION 9 -->
     <div class="question">
-      <p><strong>9. [DUMMY] Pytanie numer 9</strong></p>
+      <p><strong>9. Ilu mieszkańców ma Czmoń oficjalnie?</strong></p>
 
       <label>
         <input type="radio" name="q9" value="A">
-        Odpowiedź A
+        Około 1130
       </label>
 
       <label>
         <input type="radio" name="q9" value="B">
-        Odpowiedź B
+        Około 1520
       </label>
 
       <label>
         <input type="radio" name="q9" value="C">
-        Odpowiedź C
+        Około 1710
       </label>
     </div>
 
@@ -442,7 +441,7 @@ async function finishQuiz() {
     score++;
   }
 
-  if (document.querySelector('input[name="q4"]:checked')?.value === "A") {
+  if (document.querySelector('input[name="q4"]:checked')?.value === "Jakub") {
     score++;
   }
 
@@ -450,7 +449,7 @@ async function finishQuiz() {
     score++;
   }
 
-  if (document.querySelector('input[name="q6"]:checked')?.value === "A") {
+  if (document.querySelector('input[name="q6"]:checked')?.value === "Kasia i Szymon") {
     score++;
   }
 
@@ -462,7 +461,7 @@ async function finishQuiz() {
     score++;
   }
 
-  if (document.querySelector('input[name="q9"]:checked')?.value === "A") {
+  if (document.querySelector('input[name="q9"]:checked')?.value === "Około 1130") {
     score++;
   }
 
