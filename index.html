@@ -514,7 +514,7 @@ async function finishQuiz() {
       : Math.floor(totalTime % 60) + " s";
 
   document.getElementById("result").innerHTML =
-    "Twój wynik:<br>" 
+    "Twój wynik:<br>" +
     score + " poprawnych na " + totalQuestions + " możliwych odpowiedzi<br>" +
     "Twój czas: " + timeText;
 }
