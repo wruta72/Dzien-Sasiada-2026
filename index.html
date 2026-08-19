@@ -91,7 +91,7 @@
 <div style="text-align: center; padding: 10px;">
 <p>
   Quiz składa się z 10-ciu krótkich pytań. Liczy się zarówno poprawność odpowiedzi, jak i czas ukończenia quizu.
-  Każdy może wziąć udział w quizie tylko raz. Quiz można rozpocząć w dowolnym momencie między 18.00 a 20.00.
+  Każdy może wziąć udział w quizie tylko raz. Quiz można rozpocząć w dowolnym momencie między 18.30 a 20.00.
   Wygrywa osoba, która udzieli najwięcej poprawnych odpowiedzi i ukończy quiz w najkrótszym czasie.
 </p>
 <p>
@@ -350,6 +350,35 @@ const timeLimit = 30 * 60; // 30 minutes
 
 async function startQuiz() {
 
+  const now = new Date();
+
+  const quizDate = new Date(2026, 7, 22);
+
+  if (
+    now.getFullYear() !== quizDate.getFullYear() ||
+    now.getMonth() !== quizDate.getMonth() ||
+    now.getDate() !== quizDate.getDate()
+  ){
+    alert("Quiz bQuiz będzie dostępny w sobotę 22 sierpnia 2026 roku w godzinach 18.30 - 19.30. Zapraszamy do udziału!");
+    return;
+  }  
+  
+  const startTime  = new Date();
+  startTime.setHours(2026, 7, 22, 18, 30, 0, 0);
+
+  const.endTime = new Date();
+  endTime.setHours(2026, 7, 22, 19, 30, 0, 0);
+
+   if (now < startTime) {
+    alert("Quiz jeszcze się nie rozpoczął. Zapraszamy od godziny 18.30.");
+    return;
+  }
+
+  if (now >= endTime) {
+    alert("Quiz został już zakończony. Dziękujemy za udział!");
+    return;
+  }
+  
   const name = document.getElementById("playerName").value.trim();
 
   if (name === "") {
