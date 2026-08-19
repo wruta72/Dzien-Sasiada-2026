@@ -91,7 +91,7 @@
 <div style="text-align: center; padding: 10px;">
 <p>
   Quiz składa się z 10-ciu krótkich pytań. Liczy się zarówno poprawność odpowiedzi, jak i czas ukończenia quizu.
-  Każdy może wziąć udział w quizie tylko raz. Quiz można rozpocząć w dowolnym momencie między 18.30 a 19.30.
+  Każdy może wziąć udział w quizie tylko raz. Quiz można rozpocząć 22 sierpnia w dowolnym momencie między 18.30 a 19.30.
   Wygrywa osoba, która udzieli najwięcej poprawnych odpowiedzi i ukończy quiz w najkrótszym czasie.
 </p>
 <p>
@@ -352,16 +352,16 @@ async function startQuiz() {
 
   const now = new Date();
 
-  const startTime  = new Date(2026, 7, 19, 15, 00);
+  const QuizstartTime  = new Date(2026, 7, 19, 15, 00);
 
-  const endTime = new Date(2026, 7, 22, 19, 30);
+  const QuizendTime = new Date(2026, 7, 22, 19, 30);
 
-   if (now < startTime) {
+   if (now < QuizstartTime) {
     alert("Quiz nie jest jeszcze aktywny. Zapraszamy w sobotę 22 sierpnia w dowolnym momencie pomiędzy 18.30 a 19.30.");
     return;
   }
 
-  if (now >= endTime) {
+  if (now >= QuizendTime) {
     alert("Quiz został już zakończony. Dziękujemy za udział!");
     return;
   }
